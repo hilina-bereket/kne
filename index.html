@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>የ "ሀ" ግስ</title>
+<a href="about.html">About Us</a>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #fafafa;
+  }
+  h2 {
+    text-align: center;
+  }
+  .question {
+    margin-bottom: 30px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  .question h3 {
+    margin-top: 0;
+  }
+  .options {
+    list-style-type: none;
+    padding: 0;
+  }
+  .option {
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  /* Colors for feedback */
+  .correct {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .wrong {
+    background-color: #f44336;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h2>የ ሀ ግስ ክፍል ፩</h2>
+
+<div id="quiz-container">
+
+<!-- Questions will be inserted here by JavaScript -->
+
+</div>
+
+<script>
+const questions = [
+  {
+    qNum: 1,
+    questionText: '1. ሃልሀ',
+    options: [
+      { text: 'a) ራሰ', correct: false },
+      { text: 'b) ቀዳ(የውሃ፣የመጽ)', correct: false },
+      { text: 'c) ወደረ(የከብት)', correct: true },
+      { text: 'd) አልጫ ሆነ', correct: false },
+      { text: 'e) ሠራ(የሸክላ)', correct: false },
+      { text: 'f) ተጎነጨ(የመጠጥ)', correct: false },
+    ]
+  },
+  {
+    qNum: 2,
+    questionText: '2. ለሕሐ',
+    options: [
+      { text: 'a) ጻፈ', correct: false },
+      { text: 'b) ቀዳ(የውሃ፣የመጽ)', correct: true },
+      { text: 'c) አፈረሰ', correct: false },
+      { text: 'd) መዘዘ(የሁሉ)', correct: false },
+      { text: 'e) ጣፈጠ', correct: false },
+      { text: 'f) ምሳ አደረገ', correct: false },
+    ]
+  },
+  {
+    qNum: 3,
+    questionText: '3. ላሕልሐ',
+    options: [
+      { text: 'a) ራሰ ', correct: true },
+      { text: 'b) መራ(የሁሉ)', correct: false },
+      { text: 'c) ላጠ', correct: false },
+      { text: 'd) አሰረ(የሰው ብቻ)', correct: false },
+      { text: 'e) ሣሣ፣ቀጠነ', correct: false },
+      { text: 'f) ተደላደለ', correct: false },
+    ]
+  },
+  {
+    qNum: 4,
+    questionText: '4. ለስሐ',
+    options: [
+      { text: 'a) ፈጨ', correct: false },
+      { text: 'b) ለበሰ', correct: false },
+      { text: 'c) አልጫ ሆነ  ', correct: true },
+      { text: 'd) ሰራ', correct: false },
+      { text: 'e) አቅናና፣አከናወነ', correct: false },
+      { text: 'f) አበራ', correct: false },
+    ]
+  },
+  {
+    qNum: 5,
+    questionText: '5. ለብሐ',
+    options: [
+      { text: 'a) አመሰገነ(የጌታ)', correct: false },
+      { text: 'b) ሰባ(የሰው፣የከብት)', correct: false },
+      { text: 'c) ሠራ(የሸክላ) ', correct: true },
+      { text: 'd) በራ ሆነ', correct: false },
+      { text: 'e) ታመመ', correct: false },
+      { text: 'f) አሰጠ፣ዘረጋ', correct: false },
+    ]
+  },
+  {
+    qNum: 6,
+    questionText: '6. ለትሐ',
+    options: [
+      { text: 'a) ሰፋ፣ሰፊ ሆነ', correct: false },
+      { text: 'b) ወጋ (የጦር)', correct: false },
+      { text: 'c) ጎሰቆለ(የሁሉ)', correct: false },
+      { text: 'd) ተጎነጨ(የመጠጥ)  ', correct: true },
+      { text: 'e) ጋረጠ(የጋሬጣ)', correct: false },
+      { text: 'f) ረባ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 7,
+    questionText: '7. ሎሐ',
+    options: [
+      { text: 'a) ቀደደ', correct: false },
+      { text: 'b) ወለወለ፣አራገበ', correct: false },
+      { text: 'c) ጻፈ  ', correct: true },
+      { text: 'd) ተንቆራቆሰ/አሰምቶ ተናገረ', correct: false },
+      { text: 'e) ፍሬ ያዘ', correct: false },
+      { text: 'f) አፈራ (የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 8,
+    questionText: '8. ማሕምሐ',
+    options: [
+      { text: 'a) ጨለጠ፣ላጨ(የጸጉር)', correct: false },
+      { text: 'b) ተኮሰ(የሁሉ)', correct: false },
+      { text: 'c) አፈረሰ  ', correct: true },
+      { text: 'd) ፈተገ', correct: false },
+      { text: 'e) ቀላ(የመቅላት)', correct: false },
+      { text: 'f) ቀዳ(የእሳት፣የመጽሐፍ፣የውኃ)', correct: false },
+    ]
+  },
+  {
+    qNum: 9,
+    questionText: '9. መልኀ',
+    options: [
+      { text: 'a) ከረፋ፣ቀረና', correct: false },
+      { text: 'b) ሸተተ፣በሰበሰ', correct: false },
+      { text: 'c) መዘዘ(የሁሉ)  ', correct: true },
+      { text: 'd) ተሳለ፣ስለት ሆነ', correct: false },
+      { text: 'e) አዳነ', correct: false },
+      { text: 'f) ብርሃን ኾነ', correct: false },
+    ]
+  },
+  {
+    qNum: 10,
+    questionText: '10. መልሐ',
+    options: [
+      { text: 'a) በራ ሆነ', correct: false },
+      { text: 'b) በዛ', correct: false },
+      { text: 'c) አጣፈጠ ', correct: true },
+      { text: 'd) በጣ(የሁሉ)', correct: false },
+      { text: 'e) ደረሰ', correct: false },
+      { text: 'f) ፈላ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 11,
+    questionText: '11. መስሐ',
+    options: [
+      { text: 'a) ተመካ፣ኮራ፣ታበየ', correct: false },
+      { text: 'b) ምሳ አደረገ ', correct: true },
+      { text: 'c) አመሳቀለ(የሁሉ)', correct: false },
+      { text: 'd) ጨመረ', correct: false },
+      { text: 'e) ራራ፣ቼር ሆነ', correct: false },
+      { text: 'f) ተደነባበረ(የድንበር)', correct: false },
+    ]
+  },
+  {
+    qNum: 12,
+    questionText: '12. መርሐ',
+    options: [
+      { text: 'a) ሠለጠነ፣ፈቃድ ተቀበለ', correct: false },
+      { text: 'b) መራ(የሁሉ)  ', correct: true },
+      { text: 'c) አገመ፣በጣ', correct: false },
+      { text: 'd) ተፈጨ፣ተቆላ(የመከራ)', correct: false },
+      { text: 'e) ተመላለሰ', correct: false },
+      { text: 'f) የዋህ ሆነ፣ተሞኜ፣ገራም ሆነ', correct: false },
+    ]
+  },
+  {
+    qNum: 13,
+    questionText: '13. ሞርቅሐ',
+    options: [
+      { text: 'a) ቀላወጠ', correct: false },
+      { text: 'b) ላጠ  ', correct: true },
+      { text: 'c) ክፍት ክፍት ለ', correct: false },
+      { text: 'd) ጎረቤት ሆነ', correct: false },
+      { text: 'e) ተጋ', correct: false },
+      { text: 'f) እንዴት አደርህ ተባባለ', correct: false },
+    ]
+  },
+  {
+    qNum: 14,
+    questionText: '14. ሞቅሐ',
+    options: [
+      { text: 'a) ደስ ተሰኘ', correct: false },
+      { text: 'b) አሰረ(የሰው ብቻ)  ', correct: true },
+      { text: 'c) ትርፍርፍ አለ(የሁሉ)', correct: false },
+      { text: 'd) ተጸጸተ', correct: false },
+      { text: 'e) ሸተተ፣ከረፋ', correct: false },
+      { text: 'f) ነቃ', correct: false },
+    ]
+  },
+  {
+    qNum: 15,
+    questionText: '15. መትሀ',
+    options: [
+      { text: 'a) ጮኸ(የውሻ፣የሰው፣የንብ)', correct: false },
+      { text: 'b) ረዘመ', correct: false },
+      { text: 'c) ሣሣ፣ቀጠነ ', correct: true },
+      { text: 'd) ረጨ', correct: false },
+      { text: 'e) ነዳ', correct: false },
+      { text: 'f) ነጋ', correct: false },
+    ]
+  },
+  {
+    qNum: 16,
+    questionText: '16. መንዝሐ',
+    options: [
+      { text: 'a) ነፋ፣ቀበተተ', correct: false },
+      { text: 'b) ተደላደለ  ', correct: true },
+      { text: 'c) ፍል ሁለት', correct: false },
+      { text: 'd) እጅ ነሣ', correct: false },
+      { text: 'e) አንከባለለ(የሁሉ)', correct: false },
+      { text: 'f) ሠራ(የቤት)', correct: false },
+    ]
+  },
+  {
+    qNum: 17,
+    questionText: '17. መድሐ',
+    options: [
+      { text: 'a) አናፋ(የእሳት)', correct: false },
+      { text: 'b) ፈጨ  ', correct: true },
+      { text: 'c) አቀማጠለ፣ አቀበጠ', correct: false },
+      { text: 'd) አረሳሳ፣አስነወረ', correct: false },
+      { text: 'e) አቅላላ', correct: false },
+      { text: 'f) አሰናበተ ፣ፈቀደ', correct: false },
+    ]
+  },
+  {
+    qNum: 18,
+    questionText: '18. ሞጥሐ',
+    options: [
+      { text: 'a) ተነሳሳ፣አነሳሳ', correct: false },
+      { text: 'b) ለበሰ ', correct: true },
+      { text: 'c) ቋቋ(የእንቁላል)', correct: false },
+      { text: 'd) ዱብ ዱብ አደረገ(የሁሉ)', correct: false },
+      { text: 'e) ፈተፈተ', correct: false },
+      { text: 'f) ማለደ(የመገስገስ)', correct: false },
+    ]
+  },
+  {
+    qNum: 19,
+    questionText: '19. ሰርሀ',
+    options: [
+      { text: 'a) አቀረበ፣ቀዳ', correct: false },
+      { text: 'b) ሰራ  ', correct: true },
+      { text: 'c) ጠፋ', correct: false },
+      { text: 'd) አሻተተ', correct: false },
+      { text: 'e) ወዘወዘ(የጽና)', correct: false },
+      { text: 'f) ጮኸ(የሰው፣የከብት)', correct: false },
+    ]
+  },
+  {
+    qNum: 20,
+    questionText: '20. ሠርሐ',
+    options: [
+      { text: 'a) አሰረ(የነዶ)', correct: false },
+      { text: 'b) አቅናና፣አከናወነ  ', correct: true },
+      { text: 'c) ተናጻ', correct: false },
+      { text: 'd) ግድ አለ', correct: false },
+      { text: 'e) ደነፋ፣ፎከረ', correct: false },
+      { text: 'f) ከመረ፣ደረደረ', correct: false },
+    ]
+  },
+  {
+    qNum: 21,
+    questionText: '21. ሣርኀ',
+    options: [
+      { text: 'a) ትርፍርፍ አለ', correct: false },
+      { text: 'b) አበራ  ', correct: true },
+      { text: 'c) ጠመቀ(የጠላ)', correct: false },
+      { text: 'd) አረደ', correct: false },
+      { text: 'e) ዘጋ', correct: false },
+      { text: 'f) አታለለ', correct: false },
+    ]
+  },
+  {
+    qNum: 22,
+    questionText: '22. ሰብሐ',
+    options: [
+      { text: 'a) መዘነ', correct: false },
+      { text: 'b) አመሰገነ(የጌታ)  ', correct: true },
+      { text: 'c) ጸና', correct: false },
+      { text: 'd) ጠለቀ(የሁሉ)', correct: false },
+      { text: 'e) ደረተ፣ሰፋ', correct: false },
+      { text: 'f) ደቃ፣ቀጠቀጠ', correct: false },
+    ]
+  },
+  {
+    qNum: 23,
+    questionText: '23. ሠብሐ',
+    options: [
+      { text: 'a) አበራ', correct: false },
+      { text: 'b) ሰባ(የሰው፣የከብት)  ', correct: true },
+      { text: 'c) ክፍት ክፍት አደረገ', correct: false },
+      { text: 'd) ነጨ፣መለጠ(የቆርበት)', correct: false },
+      { text: 'e) ገራ፣ገር ሆነ(የጠባይ፣የእርሻ)', correct: false },
+      { text: 'f) ተተነኳኮለ', correct: false },
+    ]
+  },
+  {
+    qNum: 24,
+    questionText: '24. ሰንሐ',
+    options: [
+      { text: 'a) ተቆጣ', correct: false },
+      { text: 'b) በራ ሆነ  ', correct: true },
+      { text: 'c) ጠባ፣ነጋ', correct: false },
+      { text: 'd) አረደ', correct: false },
+      { text: 'e) አጨበጨበ', correct: false },
+      { text: 'f) አጎረፈ(የጎርፍ)', correct: false },
+    ]
+  },
+  {
+    qNum: 25,
+    questionText: '25. ሰይሐ',
+    options: [
+      { text: 'a) ጮኸ(የሁሉ)', correct: false },
+      { text: 'b) ታመመ  ', correct: true },
+      { text: 'c) ጠባ(የጥባት)', correct: false },
+      { text: 'd) ገበረ', correct: false },
+      { text: 'e) ቆየ', correct: false },
+      { text: 'f) ጠረገ', correct: false },
+    ]
+  },
+  {
+    qNum: 26,
+    questionText: '26. ሰጥሐ',
+    options: [
+      { text: 'a) ገለበጠ፣ለመጠ', correct: false },
+      { text: 'b) አሰጠ፣ዘረጋ ', correct: true },
+      { text: 'c) ፈላ', correct: false },
+      { text: 'd) ገመሰ', correct: false },
+      { text: 'e) ፈነቀለ፣ገመሰ', correct: false },
+      { text: 'f) ሰፋ፣ሰፊ ሆነ', correct: false },
+    ]
+  },
+  {
+    qNum: 27,
+    questionText: '27. ሰፍሐ',
+    options: [
+      { text: 'a) ሰፋ፣ሰፊ ሆነ  ', correct: true },
+      { text: 'b) ወጋ (የጦር)', correct: false },
+      { text: 'c) ጎሰቆለ(የሁሉ)', correct: false },
+      { text: 'd) ጋረጠ(የጋሬጣ)', correct: false },
+      { text: 'e) ረባ(የሁሉ)', correct: false },
+      { text: 'f) ቀደደ', correct: false },
+    ]
+  },
+  {
+    qNum: 28,
+    questionText: '28. ረምሐ',
+    options: [
+      { text: 'a) ወለወለ፣አራገበ', correct: false },
+      { text: 'b) ወጋ (የጦር)  ', correct: true },
+      { text: 'c) ተንቆራቆሰ/አሰምቶ ተናገረ', correct: false },
+      { text: 'd) ፍሬ ያዘ', correct: false },
+      { text: 'e) አፈራ (የሁሉ)', correct: false },
+      { text: 'f) ጨለጠ፣ላጨ(የጸጉር)', correct: false },
+    ]
+  },
+  {
+    qNum: 29,
+    questionText: '29. ረስሐ',
+    options: [
+      { text: 'a) ተኮሰ(የሁሉ)', correct: false },
+      { text: 'b) ጎሰቆለ(የሁሉ)  ', correct: true },
+      { text: 'c) ፈተገ', correct: false },
+      { text: 'd) ቀላ(የመቅላት)', correct: false },
+      { text: 'e) ቀዳ(የእሳት፣የመጽሐፍ፣የውኃ)', correct: false },
+      { text: 'f) ከረፋ፣ቀረና', correct: false },
+    ]
+  },
+  {
+    qNum: 30,
+    questionText: '30. ረቅሐ',
+    options: [
+      { text: 'a) ሸተተ፣በሰበሰ', correct: false },
+      { text: 'b) ጋረጠ(የጋሬጣ) ', correct: true },
+      { text: 'c) ተሳለ፣ስለት ሆነ', correct: false },
+      { text: 'd) አዳነ', correct: false },
+      { text: 'e) ብርሃን ኾነ', correct: false },
+      { text: 'f) በራ ሆነ', correct: false },
+    ]
+  },
+  {
+    qNum: 31,
+    questionText: '31. ረብሐ',
+    options: [
+      { text: 'a) በዛ', correct: false },
+      { text: 'b) በጣ(የሁሉ)', correct: false },
+      { text: 'c) ረባ(የሁሉ)  ', correct: true },
+      { text: 'd) ደረሰ', correct: false },
+      { text: 'e) ፈላ(የሁሉ)', correct: false },
+      { text: 'f) ተመካ፣ኮራ፣ታበየ', correct: false },
+    ]
+  },
+  {
+    qNum: 32,
+    questionText: '32. ረውሐ',
+    options: [
+      { text: 'a) አመሳቀለ(የሁሉ)', correct: false },
+      { text: 'b) ቀደደ  ', correct: true },
+      { text: 'c) ጨመረ', correct: false },
+      { text: 'd) ራራ፣ቼር ሆነ', correct: false },
+      { text: 'e) ተደነባበረ(የድንበር)', correct: false },
+      { text: 'f) ሠለጠነ፣ፈቃድ ተቀበለ', correct: false },
+    ]
+  },
+  {
+    qNum: 33,
+    questionText: '33. ሮሐ',
+    options: [
+      { text: 'a) አገመ፣በጣ', correct: false },
+      { text: 'b) ወለወለ፣አራገበ  ', correct: true },
+      { text: 'c) ተፈጨ፣ተቆላ(የመከራ)', correct: false },
+      { text: 'd) ተላለፈ', correct: false },
+      { text: 'e) የዋህ ሆነ፣ተሞኜ፣ገራም ሆነ', correct: false },
+      { text: 'f) ቀላወጠ', correct: false },
+    ]
+  },
+  {
+    qNum: 34,
+    questionText: '34. ቃሕቅሐ',
+    options: [
+      { text: 'a) ክፍት ክፍት አለ', correct: false },
+      { text: 'b) ተንቆራቆሰ/አሰምቶ ተናገረ ', correct: true },
+      { text: 'c) ጎረቤት ሆነ', correct: false },
+      { text: 'd) ተጋ', correct: false },
+      { text: 'e) እንዴት አደርህ ተባባለ', correct: false },
+      { text: 'f) ደስ ተሰኘ', correct: false },
+    ]
+  },
+  {
+    qNum: 35,
+    questionText: '35. ቆልሐ',
+    options: [
+      { text: 'a) ትርፍርፍ አለ(የሁሉ)', correct: false },
+      { text: 'b) ፍሬ ያዘ ', correct: true },
+      { text: 'c) ተጸጸተ', correct: false },
+      { text: 'd) ሸተተ፣ከረፋ', correct: false },
+      { text: 'e) ነቃ', correct: false },
+      { text: 'f) ጮኸ(የውሻ፣የሰው፣የንብ)', correct: false },
+    ]
+  },
+  {
+    qNum: 36,
+    questionText: '36. ቀምሐ',
+    options: [
+      { text: 'a) ረዘመ', correct: false },
+      { text: 'b) አፈራ (የሁሉ)  ', correct: true },
+      { text: 'c) ረጨ', correct: false },
+      { text: 'd) ነዳ', correct: false },
+      { text: 'e) ነጋ', correct: false },
+      { text: 'f) ነፋ፣ቀበተተ', correct: false },
+    ]
+  },
+  {
+    qNum: 37,
+    questionText: '37. ቀርሐ',
+    options: [
+      { text: 'a) ክፍል ሁለት', correct: false },
+      { text: 'b) ጨለጠ፣ላጨ(የጸጉር) ', correct: true },
+      { text: 'c) እጅ ነሣ', correct: false },
+      { text: 'd) አንከባለለ(የሁሉ)', correct: false },
+      { text: 'e) ሠራ(የቤት)', correct: false },
+      { text: 'f) አናፋ(የእሳት)', correct: false },
+    ]
+  },
+  {
+    qNum: 38,
+    questionText: '38. ቃርሐ',
+    options: [
+      { text: 'a) አቀማጠለ፣ አቀበጠ', correct: false },
+      { text: 'b) ተኮሰ(የሁሉ)  ', correct: true },
+      { text: 'c)  ረሳሳ፣አስነወረ', correct: false },
+      { text: 'd) አቅላላ', correct: false },
+      { text: 'e) አሰናበተ ፣ፈቀደ', correct: false },
+      { text: 'f) ተነሳሳ፣አነሳሳ', correct: false },
+    ]
+  },
+  {
+    qNum: 39,
+    questionText: '39. ቄቅሐ',
+    options: [
+      { text: 'a) ቋቋ(የእንቁላል)', correct: false },
+      { text: 'b) ፈተገ  ', correct: true },
+      { text: 'c) ዱብ ዱብ አደረገ(የሁሉ)', correct: false },
+      { text: 'd) ፈተፈተ', correct: false },
+      { text: 'e) ማለደ(የመገስገስ)', correct: false },
+      { text: 'f) አቀረበ፣ቀዳ', correct: false },
+    ]
+  },
+  {
+    qNum: 40,
+    questionText: '40. ቄሐ',
+    options: [
+      { text: 'a) ጠፋ', correct: false },
+      { text: 'b) ቀላ(የመቅላት)  ', correct: true },
+      { text: 'c) አሻተተ', correct: false },
+      { text: 'd) ወዘወዘ(የጽና)', correct: false },
+      { text: 'e) ጮኸ(የሰው፣የከብት)', correct: false },
+      { text: 'f) አሰረ(የነዶ)', correct: false },
+    ]
+  },
+  {
+    qNum: 41,
+    questionText: '41. ቀድሐ',
+    options: [
+      { text: 'a) ተናጻ', correct: false },
+      { text: 'b) ቀዳ(የእሳት፣የመጽሐፍ፣የውኃ)', correct: true },
+      { text: 'c) ግድ አለ', correct: false },
+      { text: 'd) ደነፋ፣ፎከረ', correct: false },
+      { text: 'e) ከመረ፣ደረደረ', correct: false },
+      { text: 'f) ትርፍርፍ አለ', correct: false },
+    ]
+  },
+  {
+    qNum: 42,
+    questionText: '42. ባኅብኀ',
+    options: [
+      { text: 'a) ጠመቀ(የጠላ)', correct: false },
+      { text: 'b) ከረፋ፣ቀረና  ', correct: true },
+      { text: 'c) አረደ', correct: false },
+      { text: 'd) ዘጋ', correct: false },
+      { text: 'e) አታለለ', correct: false },
+      { text: 'f) መዘነ', correct: false },
+    ]
+  },
+  {
+    qNum: 43,
+    questionText: '43. በኊበኈ',
+    options: [
+      { text: 'a) ጸና', correct: false },
+      { text: 'b) ሸተተ፣በሰበሰ  ', correct: true },
+      { text: 'c) ጠለቀ(የሁሉ)', correct: false },
+      { text: 'd) ደረተ፣ሰፋ', correct: false },
+      { text: 'e) ደቃ፣ቀጠቀጠ', correct: false },
+      { text: 'f) አበራ', correct: false },
+    ]
+  },
+  {
+    qNum: 44,
+    questionText: '44. በልኀ',
+    options: [
+      { text: 'a) ክፍት  ክፍት አደረገ', correct: false },
+      { text: 'b) ተሳለ፣ስለት ሆነ  ', correct: true },
+      { text: 'c) ነጨ፣መለጠ(የቆርበት)', correct: false },
+      { text: 'd) ገራ፣ገር ሆነ(የጠባይ፣የእርሻ)', correct: false },
+      { text: 'e) ተተነኳኮለ', correct: false },
+      { text: 'f) ተቆጣ', correct: false },
+    ]
+  },
+  {
+    qNum: 45,
+    questionText: '45. ባልሐ',
+    options: [
+      { text: 'a) ጠባ፣ነጋ', correct: false },
+      { text: 'b) አዳነ  ', correct: true },
+      { text: 'c) አረደ', correct: false },
+      { text: 'd) አጨበጨበ', correct: false },
+      { text: 'e) አጎረፈ(የጎርፍ)', correct: false },
+      { text: 'f) ጮኸ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 46,
+    questionText: '46. በርሀ',
+    options: [
+      { text: 'a) ጠባ(የጥባት)', correct: false },
+      { text: 'b) ብርሃን ኾነ  ', correct: true },
+      { text: 'c) ገበረ', correct: false },
+      { text: 'd) ቆየ', correct: false },
+      { text: 'e) ጠረገ', correct: false },
+      { text: 'f) ገለበጠ፣ለመጠ', correct: false },
+    ]
+  },
+  {
+    qNum: 47,
+    questionText: '47. በርሐ',
+    options: [
+      { text: 'a) ፈላ', correct: false },
+      { text: 'b) በራ  ሆነ ', correct: true },
+      { text: 'c) ገመሰ', correct: false },
+      { text: 'd) ፈነቀለ፣ገመሰ', correct: false },
+      { text: 'e) በዛ', correct: false },
+      { text: 'f) በጣ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 48,
+    questionText: '48. በዝኀ',
+    options: [
+      { text: 'a) ደረሰ', correct: false },
+      { text: 'b) በዛ  ', correct: true },
+      { text: 'c) ፈላ(የሁሉ)', correct: false },
+      { text: 'd) ተመካ፣ኮራ፣ታበየ', correct: false },
+      { text: 'e) አመሳቀለ(የሁሉ)', correct: false },
+      { text: 'f) ጨመረ', correct: false },
+    ]
+  },
+  {
+    qNum: 49,
+    questionText: '49. በጥሐ',
+    options: [
+      { text: 'a) ራራ፣ቼር ሆነ', correct: false },
+      { text: 'b) በጣ(የሁሉ)  ', correct: true },
+      { text: 'c) ተደነባበረ(የድንበር)', correct: false },
+      { text: 'd) ሠለጠነ፣ፈቃድ ተቀበለ', correct: false },
+      { text: 'e) አገመ፣በጣ', correct: false },
+      { text: 'f) ተፈጨ፣ተቆላ(የመከራ)', correct: false },
+    ]
+  },
+  {
+    qNum: 50,
+    questionText: '50. በጽሐ',
+    options: [
+      { text: 'a) ተመላለሰ', correct: false },
+      { text: 'b) ደረሰ  ', correct: true },
+      { text: 'c) የዋህ ሆነ፣ተሞኜ፣ገራም ሆነ', correct: false },
+      { text: 'd) ቀላወጠ', correct: false },
+      { text: 'e) ክፍት ክፍት አለ', correct: false },
+      { text: 'f) ጎረቤት ሆነ', correct: false },
+    ]
+  },
+  {
+    qNum: 51,
+    questionText: '51. ታሕትሐ',
+    options: [
+      { text: 'a) ተጋ', correct: false },
+      { text: 'b) ፈላ(የሁሉ)  ', correct: true },
+      { text: 'c) እንዴት አደርህ ተባባለ', correct: false },
+      { text: 'd) ደስ ተሰኘ', correct: false },
+      { text: 'e) ትርፍርፍ አለ(የሁሉ)', correct: false },
+      { text: 'f) ተጸጸተ', correct: false },
+    ]
+  },
+  {
+    qNum: 52,
+    questionText: '52. ተመክሐ',
+    options: [
+      { text: 'a) ሸተተ፣ከረፋ', correct: false },
+      { text: 'b) ተመካ፣ኮራ፣ታበየ ', correct: true },
+      { text: 'c) ነቃ', correct: false },
+      { text: 'd) ጮኸ(የውሻ፣የሰው፣የንብ)', correct: false },
+      { text: 'e) ረዘመ', correct: false },
+      { text: 'f) ረጨ', correct: false },
+    ]
+  },
+  {
+    qNum: 53,
+    questionText: '53. አመልትሐ',
+    options: [
+      { text: 'a) ነዳ', correct: false },
+      { text: 'b) አመሳቀለ(የሁሉ)  ', correct: true },
+      { text: 'c) ነጋ', correct: false },
+      { text: 'd) ነፋ፣ቀበተተ', correct: false },
+      { text: 'e) ክፍል ሁለት', correct: false },
+      { text: 'f) እጅ ነሣ', correct: false },
+    ]
+  },
+  {
+    qNum: 54,
+    questionText: '54. ቶሰሐ',
+    options: [
+      { text: 'a) አንከባለለ(የሁሉ)', correct: false },
+      { text: 'b) ጨመረ  ', correct: true },
+      { text: 'c) ሠራ(የቤት)', correct: false },
+      { text: 'd) አናፋ(የእሳት)', correct: false },
+      { text: 'e) አቀማጠለ፣ አቀበጠ', correct: false },
+      { text: 'f) አረሳሳ፣አስነወረ', correct: false },
+    ]
+  },
+  {
+    qNum: 55,
+    questionText: '55. ተራኅርሀ',
+    options: [
+      { text: 'a) አቅላላ', correct: false },
+      { text: 'b) ራራ፣ቼር ሆነ  ', correct: true },
+      { text: 'c) አሰናበተ ፣ፈቀደ', correct: false },
+      { text: 'd) ተነሳሳ፣አነሳሳ', correct: false },
+      { text: 'e) ቋቋ(የእንቁላል)', correct: false },
+      { text: 'f) ዱብ ዱብ አደረገ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 56,
+    questionText: '56. ተቃድሐ',
+    options: [
+      { text: 'a) ፈተፈተ', correct: false },
+      { text: 'b) ተደነባበረ(የድንበር)  ', correct: true },
+      { text: 'c) ማለደ(የመገስገስ)', correct: false },
+      { text: 'd) አቀረበ፣ቀዳ', correct: false },
+      { text: 'e) ጠፋ', correct: false },
+      { text: 'f) አሻተተ', correct: false },
+    ]
+  },
+  {
+    qNum: 57,
+    questionText: '57. ተበውሐ',
+    options: [
+      { text: 'a) ወዘወዘ(የጽና)', correct: false },
+      { text: 'b) ሠለጠነ፣ፈቃድ ተቀበለ  ', correct: true },
+      { text: 'c) ጮኸ(የሰው፣የከብት)', correct: false },
+      { text: 'd) አሰረ(የነዶ)', correct: false },
+      { text: 'e) ተናጻ', correct: false },
+      { text: 'f) ግድ አለ', correct: false },
+    ]
+  },
+  {
+    qNum: 58,
+    questionText: '58. ተንሀ',
+    options: [
+      { text: 'a) ደነፋ፣ፎከረ', correct: false },
+      { text: 'b) አገመ፣በጣ  ', correct: true },
+      { text: 'c) ከመረ፣ደረደረ', correct: false },
+      { text: 'd) ትርፍርፍ አለ', correct: false },
+      { text: 'e) ጠመቀ(የጠላ)', correct: false },
+      { text: 'f) አረደ', correct: false },
+    ]
+  },
+  {
+    qNum: 59,
+    questionText: '59. ተወፅኀ',
+    options: [
+      { text: 'a) ዘጋ', correct: false },
+      { text: 'b) ተፈጨ፣ተቆላ(የመከራ)  ', correct: true },
+      { text: 'c) አታለለ', correct: false },
+      { text: 'd) መዘነ', correct: false },
+      { text: 'e) ጸና', correct: false },
+      { text: 'f) ጠለቀ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 60,
+    questionText: '60. ተዋህውሀ',
+    options: [
+      { text: 'a) ደረተ፣ሰፋ', correct: false },
+      { text: 'b) ተመላለሰ  ', correct: true },
+      { text: 'c) ደቃ፣ቀጠቀጠ', correct: false },
+      { text: 'd) አበራ', correct: false },
+      { text: 'e) ክፍት ክፍት አደረገ', correct: false },
+      { text: 'f) ነጨ፣መለጠ(የቆርበት)', correct: false },
+    ]
+  },
+  {
+    qNum: 61,
+    questionText: '61. ተየውሀ',
+    options: [
+      { text: 'a) ገራ፣ገር ሆነ(የጠባይ፣የእርሻ)', correct: false },
+      { text: 'b) የዋህ ሆነ፣ተሞኜ፣ገራም ሆነ  ', correct: true },
+      { text: 'c) ተተነኳኮለ', correct: false },
+      { text: 'd) ተቆጣ', correct: false },
+      { text: 'e) ጠባ፣ነጋ', correct: false },
+      { text: 'f) አረደ', correct: false },
+    ]
+  },
+  {
+    qNum: 62,
+    questionText: '62. ቴሀ',
+    options: [
+      { text: 'a) አጨበጨበ', correct: false },
+      { text: 'b) ቀላወጠ ', correct: true },
+      { text: 'c) አጎረፈ(የጎርፍ)', correct: false },
+      { text: 'd) ጮኸ(የሁሉ)', correct: false },
+      { text: 'e) ጠባ(የጥባት)', correct: false },
+      { text: 'f) ገበረ', correct: false },
+    ]
+  },
+  {
+    qNum: 63,
+    questionText: '63. ተጋህግሀ',
+    options: [
+      { text: 'a) ቆየ', correct: false },
+      { text: 'b) ክፍት ክፍት አለ  ', correct: true },
+      { text: 'c) ጠረገ', correct: false },
+      { text: 'd) ገለበጠ፣ለመጠ', correct: false },
+      { text: 'e) ፈላ', correct: false },
+      { text: 'f) ገመሰ', correct: false },
+    ]
+  },
+  {
+    qNum: 64,
+    questionText: '64. ተጋውሐ',
+    options: [
+      { text: 'a) ፈነቀለ፣ገመሰ', correct: false },
+      { text: 'b) ጎረቤት ሆነ  ', correct: true },
+      { text: 'c) ተጋ', correct: false },
+      { text: 'd) እንዴት አደርህ ተባባለ', correct: false },
+      { text: 'e) ደስ ተሰኘ', correct: false },
+      { text: 'f) ትርፍርፍ አለ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 65,
+    questionText: '65. ተግሀ',
+    options: [
+      { text: 'a) ተጸጸተ', correct: false },
+      { text: 'b) ተጋ  ', correct: true },
+      { text: 'c) ሸተተ፣ከረፋ', correct: false },
+      { text: 'd) ነቃ', correct: false },
+      { text: 'e) ጮኸ(የውሻ፣የሰው፣የንብ)', correct: false },
+      { text: 'f) ረዘመ', correct: false },
+    ]
+  },
+  {
+    qNum: 66,
+    questionText: '66. ተጻብሐ',
+    options: [
+      { text: 'a)  ጨ', correct: false },
+      { text: 'b) እንዴት አደርህ ተባባለ  ', correct: true },
+      { text: 'c) ነጋ', correct: false },
+      { text: 'd) ነፋ፣ቀበተተ', correct: false },
+      { text: 'e) ክፍል ሁለት', correct: false },
+      { text: 'f) እጅ ነሣ', correct: false },
+    ]
+  },
+  {
+    qNum: 67,
+    questionText: '67. ተፈስሐ',
+    options: [
+      { text: 'a) አንከባለለ(የሁሉ)', correct: false },
+      { text: 'b) ደስ ተሰኘ ', correct: true },
+      { text: 'c) ሠራ(የቤት)', correct: false },
+      { text: 'd) አናፋ(የእሳት)', correct: false },
+      { text: 'e) አቀማጠለ፣ አቀበጠ', correct: false },
+      { text: 'f) አረሳሳ፣አስነወረ', correct: false },
+    ]
+  },
+  {
+    qNum: 68,
+    questionText: '68. ናሕንሐ',
+    options: [
+      { text: 'a) አቅላላ', correct: false },
+      { text: 'b) ትርፍርፍ አለ(የሁሉ)  ', correct: true },
+      { text: 'c) አሰናበተ ፣ፈቀደ', correct: false },
+      { text: 'd) ተነሳሳ፣አነሳሳ', correct: false },
+      { text: 'e) ቋቋ(የእንቁላል)', correct: false },
+      { text: 'f) ዱብ ዱብ አደረገ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 69,
+    questionText: '69. ነስሐ',
+    options: [
+      { text: 'a) ፈተፈተ', correct: false },
+      { text: 'b) ተጸጸተ  ', correct: true },
+      { text: 'c) ማለደ(የመገስገስ)', correct: false },
+      { text: 'd) አቀረበ፣ቀዳ', correct: false },
+      { text: 'e) ጠፋ', correct: false },
+      { text: 'f) አሻተተ', correct: false },
+    ]
+  },
+  {
+    qNum: 70,
+    questionText: '70. ነስኀ',
+    options: [
+      { text: 'a) ወዘወዘ(የጽና)', correct: false },
+      { text: 'b) ሸተተ፣ከረፋ  ', correct: true },
+      { text: 'c) ጮኸ(የሰው፣የከብት)', correct: false },
+      { text: 'd) አሰረ(የነዶ)', correct: false },
+      { text: 'e) ተናጻ', correct: false },
+      { text: 'f) ግድ አለ', correct: false },
+    ]
+  },
+  {
+    qNum: 71,
+    questionText: '71. ነቅሀ',
+    options: [
+      { text: 'a) ደነፋ፣ፎከረ', correct: false },
+      { text: 'b) ነቃ  ', correct: true },
+      { text: 'c) ከመረ፣ደረደረ', correct: false },
+      { text: 'd) ትርፍርፍ  ለ', correct: false },
+      { text: 'e) ጠመቀ(የጠላ)', correct: false },
+      { text: 'f) አረደ', correct: false },
+    ]
+  },
+  {
+    qNum: 72,
+    questionText: '72. ነብሐ',
+    options: [
+      { text: 'a) ዘጋ', correct: false },
+      { text: 'b) ጮኸ(የውሻ፣የሰው፣የንብ)  ', correct: true },
+      { text: 'c) አታለለ', correct: false },
+      { text: 'd) መዘነ', correct: false },
+      { text: 'e) ጸና', correct: false },
+      { text: 'f) ጠለቀ(የሁሉ)', correct: false },
+    ]
+  },
+  {
+    qNum: 73,
+    questionText: '73. ኖኀ',
+    options: [
+      { text: 'a) ደረተ፣ሰፋ', correct: false },
+      { text: 'b) ረዘመ  ', correct: true },
+      { text: 'c) ደቃ፣ቀጠቀጠ', correct: false },
+      { text: 'd) አበራ', correct: false },
+      { text: 'e) ክፍት ክፍት አደረገ', correct: false },
+      { text: 'f) ነጨ፣መለጠ(የቆርበት)', correct: false },
+    ]
+  },
+  {
+    qNum: 74,
+    questionText: '74. ነዝሀ',
+    options: [
+      { text: 'a) ገራ፣ገር ሆነ(የጠባይ፣የእርሻ)', correct: false },
+      { text: 'b) ረጨ ', correct: true },
+      { text: 'c) ተተነኳኮለ', correct: false },
+      { text: 'd) ተቆጣ', correct: false },
+      { text: 'e) ጠባ፣ነጋ', correct: false },
+      { text: 'f) አረደ', correct: false },
+    ]
+  },
+  {
+    qNum: 75,
+    questionText: '75. ነድሐ',
+    options: [
+      { text: 'a) አጨበጨበ', correct: false },
+      { text: 'b) ነዳ  ', correct: true },
+      { text: 'c) አጎረፈ(የጎርፍ)', correct: false },
+      { text: 'd) ጮኸ(የሁሉ)', correct: false },
+      { text: 'e) ጠባ(የጥባት)', correct: false },
+      { text: 'f) ገበረ', correct: false },
+    ]
+  },
+  {
+    qNum: 76,
+    questionText: '76. ነግሀ',
+    options: [
+      { text: 'a) ቆየ', correct: false },
+      { text: 'b) ነጋ  ', correct: true },
+      { text: 'c) ጠረገ', correct: false },
+      { text: 'd) ገለበጠ፣ለመጠ', correct: false },
+      { text: 'e) ፈላ', correct: false },
+      { text: 'f) ገመሰ', correct: false },
+    ]
+  },
+  {
+    qNum: 77,
+    questionText: '77. ነፍኀ',
+    options: [
+      { text: 'a) ፈነቀለ፣ገመሰ', correct: false },
+      { text: 'b) ነፋ፣ቀበተተ  ', correct: true },
+      { text: 'c) ክፍል ሁለት', correct: false },
+      { text: 'd) እጅ ነሣ', correct: false },
+      { text: 'e) አንከባለለ(የሁሉ)', correct: false },
+      { text: 'f) ሠራ(የቤት)', correct: false },
+    ]
+  }
+];
+
+const container = document.getElementById('quiz-container');
+
+questions.forEach((q, index) => {
+  const qDiv = document.createElement('div');
+  qDiv.className = 'question';
+  qDiv.innerHTML = `<h3>${q.questionText}</h3>`;
+
+  const ul = document.createElement('ul');
+  ul.className = 'options';
+
+  q.options.forEach((opt, optIndex) => {
+    const li = document.createElement('li');
+    li.className = 'option';
+    li.textContent = opt.text;
+    li.setAttribute('data-correct', opt.correct);
+    li.addEventListener('click', () => {
+      // Reset all options in this question
+      Array.from(ul.children).forEach(item => {
+        item.classList.remove('correct', 'wrong');
+      });
+      // Set color based on correctness
+      if (li.getAttribute('data-correct') === 'true') {
+        li.classList.add('correct');
+      } else {
+        li.classList.add('wrong');
+      }
+    });
+    ul.appendChild(li);
+  });
+
+  qDiv.appendChild(ul);
+  container.appendChild(qDiv);
+});
+</script>
+
+</body>
+</html>
